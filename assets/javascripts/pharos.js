@@ -27,7 +27,7 @@ function newFunction() {
      */
     (function($) {
         'use strict';
-        $(".cover-headline").fitText(0.85);
+        // $(".cover-headline").fitText(0.85);
         $("article").fitVids();
         ;
         $(document).ready(function() {
