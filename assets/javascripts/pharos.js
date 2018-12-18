@@ -115,7 +115,7 @@ newFunction()
 
 function newFunction() {
   /*!
-   * Pharos 1.0
+   * Pharos 1.0.2
    */
   ;(function($) {
     'use strict'
