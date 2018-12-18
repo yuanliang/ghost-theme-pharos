@@ -127,17 +127,14 @@ function newFunction() {
     $('.toggle-navigation').on('click', function() {
       $('body').toggleClass('open-navigation')
     })
-    var isCommentsShow = false
     $('.toggle-comments').on('click', function(e) {
-      if (!isCommentsShow) {
-        isInChina(function(inChina) {
+      isInChina(function(inChina) {
+        if(inChina) {
           alert('请使用科学上网法进行评论 ^_^!')
-          isCommentsShow = !isCommentsShow
           return false
-        })
-      }
-      $('body').toggleClass('open-comments')
-      isCommentsShow = !isCommentsShow
+        }
+        $('body').toggleClass('open-comments')
+      })
     })
     $('.cover, .content').on('click', function() {
       $('body').removeClass('open-navigation')
