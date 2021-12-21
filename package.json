@@ -10,6 +10,7 @@
     "style": "lessc --clean-css ./assets/stylesheets/pharos.less ./assets/stylesheets/pharos.min.css"
   },
   "devDependencies": {
+    "minimist": ">=0.2.1",
     "less": "^2.7.2"
   },
   "repository": "git@github.com:yuanliang/pharos.git",
