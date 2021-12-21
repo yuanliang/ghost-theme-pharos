@@ -1,5 +1,9 @@
 # pharos
-yuanliang.io's theme for ghost. (Based on Journal Ghost theme)
+yuanliang.run's theme for ghost. (Based on Journal Ghost theme)
+
+***DEMO Site***
+https://yuanliang.run
+
 
 Pharos Ghost theme is licensed under the General Public
 License (MIT).
