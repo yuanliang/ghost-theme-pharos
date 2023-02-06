@@ -1,5 +1,5 @@
 {{! Author details displayed in the post and in the author page }}
-{{#author}}
+{{#foreach authors}}
 <div class="author">
 	<div class="container">
 		<a class="author-image" href="{{url}}" style="background-image: url({{img_url profile_image}});"></a>
@@ -10,5 +10,5 @@
 		</div>
 	</div>
 </div>
-{{/author}}
+{{/foreach}}
 
