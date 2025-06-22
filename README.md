@@ -2,7 +2,7 @@
 yuanliang.run's theme for ghost. (Based on Journal Ghost theme)
 
 ***DEMO Site***
-https://yuanliang.run
+https://yuanliang.io
 
 
 Pharos Ghost theme is licensed under the General Public
