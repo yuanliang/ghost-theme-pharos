@@ -5,15 +5,15 @@
 	{{#if tag.feature_image}} 
 	    style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{tag.feature_image}});"
 	{{else}}
-		{{#if @blog.cover_image}} 
-		    style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{@blog.cover_image}});"
+		{{#if @site.cover_image}} 
+		    style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{@site.cover_image}});"
         {{/if}}
 	{{/if}}>	
 	<div class="cover-content">
 		<div class="container">
-		    {{#if @blog.logo}}
+		    {{#if @site.logo}}
             <div class="cover-logo">
-               <a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" class="small-logo"></a> 
+               <a href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" class="small-logo"></a> 
             </div>            
             {{/if}}
 			<h1 class="cover-headline">#{{tag.name}}</h1>

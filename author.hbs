@@ -4,18 +4,18 @@
 {{#author}}
 <aside class="cover" {{#if cover_image}} style="background-image: url({{cover_image}});"
 	{{else}}
-		{{#if @blog.cover_image}} style="background-image: url({{@blog.cover_image}});"{{/if}}
+		{{#if @site.cover_image}} style="background-image: url({{@site.cover_image}});"{{/if}}
 	{{/if}}>
 	<div class="cover-content">
 		<div class="container">
-		    {{#if @blog.logo}}
+		    {{#if @site.logo}}
             <div class="cover-logo">
-               <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="big-logo"> 
+               <img src="{{@site.logo}}" alt="{{@site.title}}" class="big-logo"> 
             </div>            
             {{else}}
-            <h1 class="cover-headline">{{@blog.title}}</h1>
+            <h1 class="cover-headline">{{@site.title}}</h1>
             {{/if}}			
-			<p class="cover-text">{{@blog.description}}</p>
+			<p class="cover-text">{{@site.description}}</p>
 		</div>			
 	</div>
 </aside>

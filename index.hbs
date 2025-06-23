@@ -2,19 +2,19 @@
 
 {{! The big cover on the left }}
 <aside class="cover" 
-    {{#if @blog.cover_image}} 
-        style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{@blog.cover_image}});"
+    {{#if @site.cover_image}} 
+        style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{@site.cover_image}});"
     {{/if}}>	
 	<div class="cover-content">
 		<div class="container">
-		    {{#if @blog.logo}}
+		    {{#if @site.logo}}
             <div class="cover-logo">
-               <img src="{{@blog.logo}}" alt="{{@blog.title}}" class="big-logo"> 
+               <img src="{{@site.logo}}" alt="{{@site.title}}" class="big-logo"> 
             </div>            
             {{else}}
-            <h1 class="cover-headline">{{@blog.title}}</h1>
+            <h1 class="cover-headline">{{@site.title}}</h1>
             {{/if}}			
-			<p class="cover-text">{{@blog.description}}</p>
+			<p class="cover-text">{{@site.description}}</p>
 		</div>		
 	</div>
 	{{! The tag below includes social links on the left - partials/social-links.hbs }}	

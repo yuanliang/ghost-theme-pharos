@@ -5,6 +5,12 @@
     "name": "Yuan Liang",
     "email": "yuanliang@me.com"
   },
+  "keywords": [
+    "ghost-theme"
+  ],
+  "config": {
+    "card_assets": true
+  },
   "scripts": {
     "clean": "rm -fR ./assets/stylesheets/pharos.min.css",
     "style": "lessc --clean-css ./assets/stylesheets/pharos.less ./assets/stylesheets/pharos.min.css"
