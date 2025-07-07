@@ -17,3 +17,184 @@ h6 {
   /* 可留空或写注释 */
   /* Required by gscan for wide/full images */
 }
+
+.toggle-area-button {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+}
+
+.toggle-area-button .pta-title {
+  position: relative;
+  top: -18px;
+  left: 5px;
+  background: #000;
+  font-size: 1.22rem;
+  text-align: center;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.2); /* 半透明黑色背景 */
+  color: #fff; /* 白色字体 */
+  padding: 8px 16px; /* 添加内边距 */
+  border-radius: 8px; /* 圆角 */
+  backdrop-filter: blur(5px); /* 背景模糊效果 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
+  display: none;
+}
+
+.post-template .toggle-navigation {
+  z-index: 4000;
+}
+
+@media screen and (max-width: 800px) {
+  .toggle-area-button {
+    top: 12px;
+  }
+}
+
+.toggle-area-button .icon {
+  width: 50px;
+  height: 50px;
+  fill: #555;
+  display: inline;
+}
+
+/* .toggle-area-button .icon:hover {
+  width: 50px;
+  height: 50px;
+  margin-top: -10px;
+  margin-left: -10px;
+  fill: #000;
+} */
+.pta-icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+.pta-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.pta-shape {
+  fill: rgba(255, 255, 255, 0.8);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.pta-outline {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.4);
+  stroke-width: 1;
+}
+/* 状态：相机 */
+.pta-state-photo .pta-camera {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+.pta-state-photo .pta-article {
+  opacity: 0;
+  transform: scale(0.8) rotate(-45deg);
+}
+/* 状态：文章 */
+.pta-state-article .pta-article {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+.pta-state-article .pta-camera {
+  opacity: 0;
+  transform: scale(0.8) rotate(45deg);
+}
+/* 中间状态：模糊淡入 */
+.pta-state-mid .pta-camera,
+.pta-state-mid .pta-article {
+  opacity: 0.4;
+  transform: scale(0.9) rotate(0deg);
+}
+
+.post-template .show-article {
+  float: none;
+  width: 100%;
+  position: static;
+  height: 200px;
+  padding-top: 100px;
+}
+
+.post-template .show-article-content {
+  width: 100%;
+}
+
+.post-template .show-article .cover-content .cover-headline {
+  text-align: center;
+}
+
+.photo-card-container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #232424;
+  min-height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  padding-top: 60px;
+  overflow: hidden;
+}
+
+.photo-card-bg {
+  position: relative;
+  overflow: visible;
+  border-radius: 32px;
+  box-shadow: 0 6px 38px rgba(0, 0, 0, 0.23);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  z-index: 2000;
+  display: none;
+}
+.bg-blur {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  filter: blur(44px) brightness(0.93) saturate(1.15);
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  transition: background 0.7s;
+}
+.main-photo {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 2px 8px 8px rgba(0, 0, 0, 0.17);
+  border-radius: 8px;
+  background: #111;
+  display: block;
+  margin: 0 auto;
+  /* 宽高通过JS控制 */
+}
+.photo-info {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+  color: #fff;
+  font-family: "Inter", "PingFang SC", Arial, sans-serif;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+  font-size: 1.22rem;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 0.6em 1.2em 0.3em 1.2em;
+  min-width: 200px;
+  letter-spacing: 0.01em;
+  backdrop-filter: blur(2px);
+}

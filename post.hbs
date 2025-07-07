@@ -4,6 +4,48 @@
 
 {{! The big cover on the left }}
 {{#post}}
+
+{{! Toggle between displaying photography works and article content. }}
+<div class="toggle-area-button">
+    <div class="pta-icon pta-photo" id="ptaToggle">
+        <svg class="icon" viewBox="0 0 64 64">
+            <!-- 相机图形 -->
+            <g class="pta-camera pta-shape pta-outline">
+            <rect x="8" y="16" width="48" height="32" rx="4" ry="4"/>
+            <circle cx="32" cy="32" r="10"/>
+            <rect x="20" y="12" width="8" height="6" rx="2" ry="2"/>
+            </g>
+            <!-- 文章图形 -->
+            <g class="pta-article pta-shape pta-outline">
+            <rect x="12" y="16" width="40" height="32" rx="2" ry="2"/>
+            <line x1="18" y1="24" x2="46" y2="24"/>
+            <line x1="18" y1="30" x2="46" y2="30"/>
+            <line x1="18" y1="36" x2="34" y2="36"/>
+            </g>
+        </svg> 
+    </div>
+    <span class="pta-title">{{title}}</span>
+</div>
+
+<div class="photo-card-container">
+    <div class="photo-card-bg" id="card">
+        {{#if feature_image}} 
+            <img id="bg-blur" class="bg-blur" src={{img_url feature_image}} alt="blurred-bg">
+            <img id="main-photo" class="main-photo" src={{img_url feature_image}} alt="main-photo">
+        {{else}}
+            {{#if @site.cover_image}} 
+                <img id="bg-blur" class="bg-blur" src={{@site.cover_image}} alt="blurred-bg">
+                <img id="main-photo" class="main-photo" src={{@site.cover_image}} alt="main-photo">
+            {{/if}}
+        {{/if}}	
+        {{#if @site.cover_image}} 
+
+        {{/if}}
+        <div class="photo-info" id="photoInfo" data-alt="{{feature_image_alt}}">
+        </div>
+    </div>
+</div>
+
 <aside class="cover" 
 	{{#if feature_image}} 
 	    style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{img_url feature_image}});"
@@ -33,7 +75,6 @@
         </div>	    	
 	</div>
 </aside>
-
 {{! The post content on the right }}
 <main class="content">
     <article class="article-content" role="article" itemscope itemtype="//schema.org/Article">
