@@ -296,4 +296,7 @@ h6 {
     background-color: #555555 !important;
     color: #d5d5d5 !important;
   }
+  .article-item:nth-child(even) {
+    background: #a3a3a3 !important;
+  }
 }

@@ -173,74 +173,95 @@ function newFunction() {
     // btnPtoA.classList.add("pta-state-photo");
     // btnPtoA.setAttribute("aria-pressed", "true");
 
-    const mainPhotoSrc = document
-      .getElementById("main-photo")
-      .getAttribute("src");
-    const mainPhoto = document.getElementById("main-photo");
-    const bgBlur = document.getElementById("bg-blur");
-    mainPhoto.src = mainPhotoSrc;
-    bgBlur.src = mainPhotoSrc;
+    if (!document.getElementById("main-photo")) {
+    } else {
+      const mainPhotoSrc = document
+        .getElementById("main-photo")
+        .getAttribute("src");
+      const mainPhoto = document.getElementById("main-photo");
+      const bgBlur = document.getElementById("bg-blur");
+      mainPhoto.src = mainPhotoSrc;
+      bgBlur.src = mainPhotoSrc;
 
-    // 自适应照片尺寸（宽高不超80%视口，且保持原比例）
-    function resizePhoto() {
-      const img = mainPhoto;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight - 80;
-      // 等图片加载完再获取原始宽高
-      if (img.naturalWidth && img.naturalHeight) {
-        let maxW = vw * 0.8,
-          maxH = vh * 0.8;
-        let iw = img.naturalWidth,
-          ih = img.naturalHeight;
-        let scale = Math.min(maxW / iw, maxH / ih, 1);
-        img.style.width = iw * scale + "px";
-        img.style.height = ih * scale + "px";
+      // 自适应照片尺寸（宽高不超80%视口，且保持原比例）
+      function resizePhoto() {
+        const img = mainPhoto;
+        const vw = window.innerWidth;
+        const vh = window.innerHeight - 80;
+        // 等图片加载完再获取原始宽高
+        if (img.naturalWidth && img.naturalHeight) {
+          let maxW = vw * 0.8,
+            maxH = vh * 0.8;
+          let iw = img.naturalWidth,
+            ih = img.naturalHeight;
+          let scale = Math.min(maxW / iw, maxH / ih, 1);
+          img.style.width = iw * scale + "px";
+          img.style.height = ih * scale + "px";
+        }
       }
-    }
-    mainPhoto.onload = function () {
-      resizePhoto();
-      applyBgColor(mainPhoto);
-    };
-    window.addEventListener("resize", resizePhoto);
+      mainPhoto.onload = function () {
+        resizePhoto();
+        applyBgColor(mainPhoto);
+      };
+      window.addEventListener("resize", resizePhoto);
+      // 主色调自动融合到背景
+      function getAverageColor(img, callback) {
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight - 100;
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let data = imageData.data;
+        let r = 0,
+          g = 0,
+          b = 0,
+          count = 0;
+        for (let i = 0; i < data.length; i += 80 * 4) {
+          // 降低采样率
+          r += data[i];
+          g += data[i + 1];
+          b += data[i + 2];
+          count++;
+        }
+        r = Math.round(r / count);
+        g = Math.round(g / count);
+        b = Math.round(b / count);
+        callback(`rgb(${r},${g},${b})`);
+      }
+      function applyBgColor(img) {
+        getAverageColor(img, function (color) {
+          $(".photo-card-container").css(
+            "background",
+            `radial-gradient(ellipse at 55% 45%, ${color} 53%, #232323 100%)`
+          );
+        });
+      }
 
-    // 主色调自动融合到背景
-    function getAverageColor(img, callback) {
-      let canvas = document.createElement("canvas");
-      let ctx = canvas.getContext("2d");
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight - 100;
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      let data = imageData.data;
-      let r = 0,
-        g = 0,
-        b = 0,
-        count = 0;
-      for (let i = 0; i < data.length; i += 80 * 4) {
-        // 降低采样率
-        r += data[i];
-        g += data[i + 1];
-        b += data[i + 2];
-        count++;
+      // 首次加载
+      if (mainPhoto.complete) {
+        resizePhoto();
+        applyBgColor(mainPhoto);
       }
-      r = Math.round(r / count);
-      g = Math.round(g / count);
-      b = Math.round(b / count);
-      callback(`rgb(${r},${g},${b})`);
-    }
-    function applyBgColor(img) {
-      getAverageColor(img, function (color) {
-        $(".photo-card-container").css(
-          "background",
-          `radial-gradient(ellipse at 55% 45%, ${color} 53%, #232323 100%)`
-        );
+      document.addEventListener("DOMContentLoaded", () => {
+        const info = document.getElementById("photoInfo");
+        const raw = info.dataset.alt; // 获取 data-alt，属性通过 dataset 访问
+        if (!raw) return;
+
+        const parts = raw.split(",").map((s) => s.trim());
+
+        // 逗号前部分用 <strong>，其余用 <em>
+        let html = parts
+          .map((txt, idx) =>
+            idx === 0 ? `<strong>${txt}</strong><br />` : `${txt}`
+          )
+          .join("");
+
+        html = html.replace(/Z/gi, " ℤ ");
+        // console.log(html);
+
+        info.innerHTML = html;
       });
-    }
-
-    // 首次加载
-    if (mainPhoto.complete) {
-      resizePhoto();
-      applyBgColor(mainPhoto);
     }
 
     // function showPhotos() {
@@ -285,89 +306,71 @@ function newFunction() {
         }
       }, 1000);
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const info = document.getElementById("photoInfo");
-      const raw = info.dataset.alt; // 获取 data-alt，属性通过 dataset 访问
-      if (!raw) return;
-
-      const parts = raw.split(",").map((s) => s.trim());
-
-      // 逗号前部分用 <strong>，其余用 <em>
-      let html = parts
-        .map((txt, idx) =>
-          idx === 0 ? `<strong>${txt}</strong><br />` : `${txt}`
-        )
-        .join("");
-
-      html = html.replace(/Z/gi, " ℤ ");
-      console.log(html);
-
-      info.innerHTML = html;
-    });
   })(jQuery);
 }
 
 (function () {
-  // 命名空间变量
-  const zenToggleSwitch = document.getElementById("zen-toggle-switch-btn");
-  const zenToggleLabel = document.getElementById("zen-toggle-label");
-  const zenToggleBothBtn = document.getElementById("zen-toggle-both-btn");
-  const zenToggleGroups = {
-    camera: zenToggleSwitch.querySelector(".zen-toggle-camera-only"),
-    text: zenToggleSwitch.querySelector(".zen-toggle-text-only"),
-  };
-  let zenToggleState = "text"; // camera, text, both
+  if (!document.getElementById("zen-toggle-switch-btn")) {
+  } else {
+    // 命名空间变量
+    const zenToggleSwitch = document.getElementById("zen-toggle-switch-btn");
+    const zenToggleBothBtn = document.getElementById("zen-toggle-both-btn");
+    const zenToggleGroups = {
+      camera: zenToggleSwitch.querySelector(".zen-toggle-camera-only"),
+      text: zenToggleSwitch.querySelector(".zen-toggle-text-only"),
+    };
+    let zenToggleState = "text"; // camera, text, both
 
-  function zenToggleSetState(s) {
-    zenToggleGroups.camera.classList.remove("zen-toggle-group-active");
-    zenToggleGroups.text.classList.remove("zen-toggle-group-active");
-    zenToggleBothBtn.classList.remove("zen-toggle-btn-active");
-    if (s === "both") {
-      zenToggleBothBtn.classList.add("zen-toggle-btn-active");
-      zenToggleState = "both";
-      // 右侧切换器也恢复到“只看照片”
-      zenToggleGroups.camera.classList.add("zen-toggle-group-active");
+    function zenToggleSetState(s) {
+      zenToggleGroups.camera.classList.remove("zen-toggle-group-active");
       zenToggleGroups.text.classList.remove("zen-toggle-group-active");
-      $(".content").show();
-      $(".cover").removeClass("show-article");
-      $(".content").removeClass("show-article-content");
-      $(".photo-card-bg").hide();
-      $(".photo-card-container").hide();
-      $(".pta-title").css("display", "none");
-    }
-    if (s === "camera") {
-      zenToggleGroups.camera.classList.add("zen-toggle-group-active");
-      zenToggleState = "camera";
+      zenToggleBothBtn.classList.remove("zen-toggle-btn-active");
+      if (s === "both") {
+        zenToggleBothBtn.classList.add("zen-toggle-btn-active");
+        zenToggleState = "both";
+        // 右侧切换器也恢复到“只看照片”
+        zenToggleGroups.camera.classList.add("zen-toggle-group-active");
+        zenToggleGroups.text.classList.remove("zen-toggle-group-active");
+        $(".content").show();
+        $(".cover").removeClass("show-article");
+        $(".content").removeClass("show-article-content");
+        $(".photo-card-bg").hide();
+        $(".photo-card-container").hide();
+        $(".pta-title").css("display", "none");
+      }
+      if (s === "camera") {
+        zenToggleGroups.camera.classList.add("zen-toggle-group-active");
+        zenToggleState = "camera";
 
-      $(".content").show();
-      $(".cover").addClass("show-article");
-      $(".content").addClass("show-article-content");
-      $(".photo-card-bg").hide();
-      $(".photo-card-container").hide();
-      $(".pta-title").css("display", "none");
+        $(".content").show();
+        $(".cover").addClass("show-article");
+        $(".content").addClass("show-article-content");
+        $(".photo-card-bg").hide();
+        $(".photo-card-container").hide();
+        $(".pta-title").css("display", "none");
+      }
+      if (s === "text") {
+        zenToggleGroups.text.classList.add("zen-toggle-group-active");
+        zenToggleState = "text";
+        $(".cover").removeClass("show-article");
+        $(".content").removeClass("show-article-content");
+        $(".content").hide();
+        $(".photo-card-bg").css("display", "flex");
+        $(".photo-card-container").css("display", "flex");
+        $(".pta-title").css("display", "block");
+      }
     }
-    if (s === "text") {
-      zenToggleGroups.text.classList.add("zen-toggle-group-active");
-      zenToggleState = "text";
-      $(".cover").removeClass("show-article");
-      $(".content").removeClass("show-article-content");
-      $(".content").hide();
-      $(".photo-card-bg").css("display", "flex");
-      $(".photo-card-container").css("display", "flex");
-      $(".pta-title").css("display", "block");
-    }
+
+    // 右侧SVG只在camera/text间切换
+    zenToggleSwitch.onclick = () => {
+      if (zenToggleState === "text") zenToggleSetState("camera");
+      else zenToggleSetState("text");
+    };
+
+    // 左侧按钮恢复both，并让右侧回到“只看照片”
+    zenToggleBothBtn.onclick = () => zenToggleSetState("both");
+
+    // 默认只看照片
+    zenToggleSetState("both");
   }
-
-  // 右侧SVG只在camera/text间切换
-  zenToggleSwitch.onclick = () => {
-    if (zenToggleState === "text") zenToggleSetState("camera");
-    else zenToggleSetState("text");
-  };
-
-  // 左侧按钮恢复both，并让右侧回到“只看照片”
-  zenToggleBothBtn.onclick = () => zenToggleSetState("both");
-
-  // 默认只看照片
-  zenToggleSetState("both");
 })();
