@@ -7,7 +7,7 @@
 
 {{! Toggle between displaying photography works and article content. }}
 <div class="toggle-area-button">
-    <div class="pta-icon pta-photo" id="ptaToggle">
+    {{!-- <div class="pta-icon pta-photo" id="ptaToggle">
         <svg class="icon" viewBox="0 0 64 64">
             <!-- 相机图形 -->
             <g class="pta-camera pta-shape pta-outline">
@@ -23,9 +23,33 @@
             <line x1="18" y1="36" x2="34" y2="36"/>
             </g>
         </svg> 
+    </div> --}}
+    <div class="zen-toggle-namespace-wrapper" style="gap: 20px;">
+        <div style="display:flex;align-items:center;gap:20px;">
+            <!-- 左侧两栏按钮 -->
+            <svg title="两栏布局" alt="两栏布局" t="1751966212638" id="zen-toggle-both-btn" class="zen-toggle-btn zen-toggle-tw zen-toggle-btn-active"  class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="35535" width="200" height="200"><path d="M234.666667 853.333333A64 64 0 0 1 170.666667 789.333333v-554.666666A64 64 0 0 1 234.666667 170.666667h554.666666A64 64 0 0 1 853.333333 234.666667v554.666666a64 64 0 0 1-64 64h-554.666666z m245.333333-618.666666H234.666667v554.666666h245.333333v-554.666666z m309.333333 0h-245.333333v554.666666h245.333333v-554.666666z" p-id="35536"></path></svg>
+            <!-- 右侧切换器 -->
+            <svg id="zen-toggle-switch-btn" class="zen-toggle-btn" viewBox="0 0 38 38" fill="none" style="cursor:pointer;">
+                <!-- 只看相机 -->
+                <g class="zen-toggle-group zen-toggle-camera-only zen-toggle-group-active">
+                    <rect x="9" y="13" width="20" height="12" rx="4" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
+                    <circle cx="19" cy="19" r="4" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
+                    <rect x="15.5" y="10" width="7" height="4" rx="1.5" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
+                    <circle cx="25" cy="15" r="1" class="zen-toggle-shape" stroke="#222" stroke-width="1.2" fill="none"/>
+                </g>
+                <!-- 只看文章 -->
+                <g class="zen-toggle-group zen-toggle-text-only">
+                    <rect x="8" y="9" width="22" height="20" rx="5" fill="none"/>
+                    <rect class="zen-toggle-fill" x="11" y="13" width="16" height="2.5" rx="1.2" fill="#222"/>
+                    <rect class="zen-toggle-fill" x="11" y="18" width="16" height="2.5" rx="1.2" fill="#222"/>
+                    <rect class="zen-toggle-fill" x="11" y="23" width="12" height="2.5" rx="1.2" fill="#222"/>
+                </g>
+            </svg>
+        </div>
     </div>
-    <span class="pta-title">{{title}}</span>
 </div>
+
+{{!-- <div class="pta-title">{{title}}</div> --}}
 
 <div class="photo-card-container">
     <div class="photo-card-bg" id="card">

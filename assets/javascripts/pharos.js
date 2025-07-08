@@ -140,38 +140,38 @@ function newFunction() {
       $("body").removeClass("open-navigation");
     });
 
-    const btnPtoA = document.getElementById("ptaToggle");
-    const delay = 200; // 中间态停留时间(ms)
+    // const btnPtoA = document.getElementById("ptaToggle");
+    // const delay = 200; // 中间态停留时间(ms)
 
-    btnPtoA.addEventListener("click", () => {
-      // 进入中间态
-      btnPtoA.classList.remove("pta-state-photo", "pta-state-article");
-      btnPtoA.classList.add("pta-state-mid");
-      btnPtoA.setAttribute("aria-pressed", "mixed");
+    // btnPtoA.addEventListener("click", () => {
+    //   // 进入中间态
+    //   btnPtoA.classList.remove("pta-state-photo", "pta-state-article");
+    //   btnPtoA.classList.add("pta-state-mid");
+    //   btnPtoA.setAttribute("aria-pressed", "mixed");
 
-      setTimeout(() => {
-        // 切换到目标态
-        const wasPhoto = btnPtoA.getAttribute("data-state") !== "photo";
-        btnPtoA.classList.remove("pta-state-mid");
-        if (wasPhoto) {
-          btnPtoA.classList.add("pta-state-photo");
-          btnPtoA.setAttribute("data-state", "photo");
-          btnPtoA.setAttribute("aria-pressed", "false");
-          showArticle();
-        } else {
-          btnPtoA.classList.add("pta-state-article");
-          btnPtoA.setAttribute("data-state", "article");
-          btnPtoA.setAttribute("aria-pressed", "true");
-          showPhotos();
-        }
-      }, delay);
-    });
+    //   setTimeout(() => {
+    //     // 切换到目标态
+    //     const wasPhoto = btnPtoA.getAttribute("data-state") !== "photo";
+    //     btnPtoA.classList.remove("pta-state-mid");
+    //     if (wasPhoto) {
+    //       btnPtoA.classList.add("pta-state-photo");
+    //       btnPtoA.setAttribute("data-state", "photo");
+    //       btnPtoA.setAttribute("aria-pressed", "false");
+    //       showArticle();
+    //     } else {
+    //       btnPtoA.classList.add("pta-state-article");
+    //       btnPtoA.setAttribute("data-state", "article");
+    //       btnPtoA.setAttribute("aria-pressed", "true");
+    //       showPhotos();
+    //     }
+    //   }, delay);
+    // });
 
-    // 初始 state
-    btnPtoA.setAttribute("data-state", "photo");
-    btnPtoA.classList.remove("pta-state-article");
-    btnPtoA.classList.add("pta-state-photo");
-    btnPtoA.setAttribute("aria-pressed", "true");
+    // // 初始 state
+    // btnPtoA.setAttribute("data-state", "photo");
+    // btnPtoA.classList.remove("pta-state-article");
+    // btnPtoA.classList.add("pta-state-photo");
+    // btnPtoA.setAttribute("aria-pressed", "true");
 
     const mainPhotoSrc = document
       .getElementById("main-photo")
@@ -243,27 +243,27 @@ function newFunction() {
       applyBgColor(mainPhoto);
     }
 
-    function showPhotos() {
-      $(".cover").removeClass("show-article");
-      $(".content").removeClass("show-article-content");
-      $(".content").hide();
-      $(".photo-card-bg").css("display", "flex");
-      $(".photo-card-container").css("display", "flex");
-      $("#ptaToggle .pta-outline").css("fill", "#f3f3f3");
-      $(".pta-title").css("display", "inline-block");
-      // alert('showPhotos');
-    }
+    // function showPhotos() {
+    //   $(".cover").removeClass("show-article");
+    //   $(".content").removeClass("show-article-content");
+    //   $(".content").hide();
+    //   $(".photo-card-bg").css("display", "flex");
+    //   $(".photo-card-container").css("display", "flex");
+    //   $("#ptaToggle .pta-outline").css("fill", "#f3f3f3");
+    //   $(".pta-title").css("display", "inline-block");
+    //   // alert('showPhotos');
+    // }
 
-    function showArticle() {
-      $(".content").show();
-      $(".cover").addClass("show-article");
-      $(".content").addClass("show-article-content");
-      $(".photo-card-bg").hide();
-      $(".photo-card-container").hide();
-      $("#ptaToggle .pta-outline").css("fill", "");
-      $(".pta-title").css("display", "none");
-      // alert('showArticle');
-    }
+    // function showArticle() {
+    //   $(".content").show();
+    //   $(".cover").addClass("show-article");
+    //   $(".content").addClass("show-article-content");
+    //   $(".photo-card-bg").hide();
+    //   $(".photo-card-container").hide();
+    //   $("#ptaToggle .pta-outline").css("fill", "");
+    //   $(".pta-title").css("display", "none");
+    //   // alert('showArticle');
+    // }
 
     function isInChina(cb) {
       var url = "//graph.facebook.com/feed?callback=h";
@@ -296,9 +296,7 @@ function newFunction() {
       // 逗号前部分用 <strong>，其余用 <em>
       const html = parts
         .map((txt, idx) =>
-          idx === 0
-            ? `<strong>${txt}</strong><br />`
-            : `${txt}`
+          idx === 0 ? `<strong>${txt}</strong><br />` : `${txt}`
         )
         .join("");
 
@@ -306,3 +304,67 @@ function newFunction() {
     });
   })(jQuery);
 }
+
+(function () {
+  // 命名空间变量
+  const zenToggleSwitch = document.getElementById("zen-toggle-switch-btn");
+  const zenToggleLabel = document.getElementById("zen-toggle-label");
+  const zenToggleBothBtn = document.getElementById("zen-toggle-both-btn");
+  const zenToggleGroups = {
+    camera: zenToggleSwitch.querySelector(".zen-toggle-camera-only"),
+    text: zenToggleSwitch.querySelector(".zen-toggle-text-only"),
+  };
+  let zenToggleState = "text"; // camera, text, both
+
+  function zenToggleSetState(s) {
+    zenToggleGroups.camera.classList.remove("zen-toggle-group-active");
+    zenToggleGroups.text.classList.remove("zen-toggle-group-active");
+    zenToggleBothBtn.classList.remove("zen-toggle-btn-active");
+    if (s === "both") {
+      zenToggleBothBtn.classList.add("zen-toggle-btn-active");
+      zenToggleState = "both";
+      // 右侧切换器也恢复到“只看照片”
+      zenToggleGroups.camera.classList.add("zen-toggle-group-active");
+      zenToggleGroups.text.classList.remove("zen-toggle-group-active");
+      $(".content").show();
+      $(".cover").removeClass("show-article");
+      $(".content").removeClass("show-article-content");
+      $(".photo-card-bg").hide();
+      $(".photo-card-container").hide();
+      $(".pta-title").css("display", "none");
+    }
+    if (s === "camera") {
+      zenToggleGroups.camera.classList.add("zen-toggle-group-active");
+      zenToggleState = "camera";
+
+      $(".content").show();
+      $(".cover").addClass("show-article");
+      $(".content").addClass("show-article-content");
+      $(".photo-card-bg").hide();
+      $(".photo-card-container").hide();
+      $(".pta-title").css("display", "none");
+    }
+    if (s === "text") {
+      zenToggleGroups.text.classList.add("zen-toggle-group-active");
+      zenToggleState = "text";
+      $(".cover").removeClass("show-article");
+      $(".content").removeClass("show-article-content");
+      $(".content").hide();
+      $(".photo-card-bg").css("display", "flex");
+      $(".photo-card-container").css("display", "flex");
+      $(".pta-title").css("display", "block");
+    }
+  }
+
+  // 右侧SVG只在camera/text间切换
+  zenToggleSwitch.onclick = () => {
+    if (zenToggleState === "text") zenToggleSetState("camera");
+    else zenToggleSetState("text");
+  };
+
+  // 左侧按钮恢复both，并让右侧回到“只看照片”
+  zenToggleBothBtn.onclick = () => zenToggleSetState("both");
+
+  // 默认只看照片
+  zenToggleSetState("both");
+})();
