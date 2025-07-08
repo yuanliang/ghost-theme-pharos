@@ -188,7 +188,8 @@ h6 {
   z-index: 2;
   margin-top: 30px;
   color: #fff;
-  font-family: "Inter", "PingFang SC", Arial, sans-serif;
+  font-family: "Open Sans", "Montserrat", "Roboto", "Inter", "PingFang SC",
+    Arial, sans-serif;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
   font-size: 1.22rem;
   text-align: center;
@@ -200,6 +201,13 @@ h6 {
   min-width: 200px;
   letter-spacing: 0.01em;
   backdrop-filter: blur(2px);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.photo-info strong {
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 .zen-toggle-namespace-wrapper {
@@ -214,12 +222,13 @@ h6 {
   /* background: linear-gradient(120deg, #dedede 80%, #f3f3f3 100%);
   box-shadow: 0 2px 8px 0 #0002, 0 1.5px 4px 0 #fff8 inset;
   transition: box-shadow 0.18s, background 0.18s; */
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 4px 20px rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 4px 20px rgba(255, 255, 255, 0.3);
   isolation: isolate;
   overflow: hidden;
   display: block;
@@ -233,10 +242,13 @@ h6 {
   opacity: 1;
   stroke: #222;
 }
-.zen-toggle-tw  {
+.zen-toggle-tw {
   background: transparent;
 }
-
+.zen-toggle-tw path {
+  transform-origin: center;
+  transform-box: fill-box;
+}
 .zen-toggle-btn-border {
   transition: stroke 0.2s, opacity 0.2s;
 }
@@ -270,5 +282,18 @@ h6 {
   }
   .zen-toggle-fill {
     fill: #fff !important;
+  }
+  .zen-toggle-tw path {
+    fill: #fff !important;
+  }
+  .zen-toggle-btn:active,
+  .zen-toggle-btn:hover {
+    background: linear-gradient(120deg, #555555 80%, #333333 100%);
+    box-shadow: 0 4px 16px 0 #0003, 0 1.5px 4px 0 #555555 inset;
+  }
+  .author,
+  .pagination {
+    background-color: #555555 !important;
+    color: #d5d5d5 !important;
   }
 }

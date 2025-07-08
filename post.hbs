@@ -5,116 +5,122 @@
 {{! The big cover on the left }}
 {{#post}}
 
-{{! Toggle between displaying photography works and article content. }}
-<div class="toggle-area-button">
-    {{!-- <div class="pta-icon pta-photo" id="ptaToggle">
-        <svg class="icon" viewBox="0 0 64 64">
-            <!-- 相机图形 -->
-            <g class="pta-camera pta-shape pta-outline">
-            <rect x="8" y="16" width="48" height="32" rx="4" ry="4"/>
-            <circle cx="32" cy="32" r="10"/>
-            <rect x="20" y="12" width="8" height="6" rx="2" ry="2"/>
-            </g>
-            <!-- 文章图形 -->
-            <g class="pta-article pta-shape pta-outline">
-            <rect x="12" y="16" width="40" height="32" rx="2" ry="2"/>
-            <line x1="18" y1="24" x2="46" y2="24"/>
-            <line x1="18" y1="30" x2="46" y2="30"/>
-            <line x1="18" y1="36" x2="34" y2="36"/>
-            </g>
-        </svg> 
-    </div> --}}
-    <div class="zen-toggle-namespace-wrapper" style="gap: 20px;">
-        <div style="display:flex;align-items:center;gap:20px;">
-            <!-- 左侧两栏按钮 -->
-            <svg title="两栏布局" alt="两栏布局" t="1751966212638" id="zen-toggle-both-btn" class="zen-toggle-btn zen-toggle-tw zen-toggle-btn-active"  class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="35535" width="200" height="200"><path d="M234.666667 853.333333A64 64 0 0 1 170.666667 789.333333v-554.666666A64 64 0 0 1 234.666667 170.666667h554.666666A64 64 0 0 1 853.333333 234.666667v554.666666a64 64 0 0 1-64 64h-554.666666z m245.333333-618.666666H234.666667v554.666666h245.333333v-554.666666z m309.333333 0h-245.333333v554.666666h245.333333v-554.666666z" p-id="35536"></path></svg>
-            <!-- 右侧切换器 -->
-            <svg id="zen-toggle-switch-btn" class="zen-toggle-btn" viewBox="0 0 38 38" fill="none" style="cursor:pointer;">
-                <!-- 只看相机 -->
-                <g class="zen-toggle-group zen-toggle-camera-only zen-toggle-group-active">
-                    <rect x="9" y="13" width="20" height="12" rx="4" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
-                    <circle cx="19" cy="19" r="4" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
-                    <rect x="15.5" y="10" width="7" height="4" rx="1.5" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
-                    <circle cx="25" cy="15" r="1" class="zen-toggle-shape" stroke="#222" stroke-width="1.2" fill="none"/>
+    {{! Toggle between displaying photography works and article content. }}
+    <div class="toggle-area-button">
+        {{!--
+        <div class="pta-icon pta-photo" id="ptaToggle">
+            <svg class="icon" viewBox="0 0 64 64">
+                <!-- 相机图形 -->
+                <g class="pta-camera pta-shape pta-outline">
+                    <rect x="8" y="16" width="48" height="32" rx="4" ry="4"/>
+                    <circle cx="32" cy="32" r="10"/>
+                    <rect x="20" y="12" width="8" height="6" rx="2" ry="2"/>
                 </g>
-                <!-- 只看文章 -->
-                <g class="zen-toggle-group zen-toggle-text-only">
-                    <rect x="8" y="9" width="22" height="20" rx="5" fill="none"/>
-                    <rect class="zen-toggle-fill" x="11" y="13" width="16" height="2.5" rx="1.2" fill="#222"/>
-                    <rect class="zen-toggle-fill" x="11" y="18" width="16" height="2.5" rx="1.2" fill="#222"/>
-                    <rect class="zen-toggle-fill" x="11" y="23" width="12" height="2.5" rx="1.2" fill="#222"/>
+                <!-- 文章图形 -->
+                <g class="pta-article pta-shape pta-outline">
+                    <rect x="12" y="16" width="40" height="32" rx="2" ry="2"/>
+                    <line x1="18" y1="24" x2="46" y2="24"/>
+                    <line x1="18" y1="30" x2="46" y2="30"/>
+                    <line x1="18" y1="36" x2="34" y2="36"/>
                 </g>
             </svg>
         </div>
+        --}}
+        <div class="zen-toggle-namespace-wrapper" style="gap: 20px;">
+            <div style="display:flex;align-items:center;gap:20px;">
+                <!-- 左侧两栏按钮 -->
+                <svg title="两栏布局" alt="两栏布局" t="1751966212638" id="zen-toggle-both-btn" class="zen-toggle-btn zen-toggle-tw zen-toggle-btn-active" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="35535" width="200" height="200">
+                    <path transform="scale(0.9)"  fill="#333" d="M234.666667 853.333333A64 64 0 0 1 170.666667 789.333333v-554.666666A64 64 0 0 1 234.666667 170.666667h554.666666A64 64 0 0 1 853.333333 234.666667v554.666666a64 64 0 0 1-64 64h-554.666666z m245.333333-618.666666H234.666667v554.666666h245.333333v-554.666666z m309.333333 0h-245.333333v554.666666h245.333333v-554.666666z" p-id="35536"></path>
+                </svg>
+                <!-- 右侧切换器 -->
+                <svg id="zen-toggle-switch-btn" class="zen-toggle-btn" viewBox="0 0 38 38" fill="none" style="cursor:pointer;">
+                    <!-- 只看相机 -->
+                    <g class="zen-toggle-group zen-toggle-camera-only zen-toggle-group-active">
+                        <rect x="9" y="13" width="20" height="15" rx="4" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
+                        <circle cx="19" cy="20" r="4" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
+                        <rect x="15.5" y="10" width="7" height="4" rx="1.5" class="zen-toggle-shape" stroke="#222" stroke-width="1.5" fill="none"/>
+                        <circle cx="25" cy="15" r="1" class="zen-toggle-shape" stroke="#222" stroke-width="1.2" fill="none"/>
+                    </g>
+                    <!-- 只看文章 -->
+                    <g class="zen-toggle-group zen-toggle-text-only">
+                        <rect x="8" y="9" width="22" height="20" rx="5" fill="none"/>
+                        <rect class="zen-toggle-fill" x="11" y="13" width="16" height="2.5" rx="1.2" fill="#222"/>
+                        <rect class="zen-toggle-fill" x="11" y="18" width="16" height="2.5" rx="1.2" fill="#222"/>
+                        <rect class="zen-toggle-fill" x="11" y="23" width="12" height="2.5" rx="1.2" fill="#222"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
     </div>
-</div>
 
-{{!-- <div class="pta-title">{{title}}</div> --}}
+    {{!-- <div class="pta-title">{{title}}</div> --}}
 
-<div class="photo-card-container">
-    <div class="photo-card-bg" id="card">
-        {{#if feature_image}} 
-            <img id="bg-blur" class="bg-blur" src={{img_url feature_image}} alt="blurred-bg">
-            <img id="main-photo" class="main-photo" src={{img_url feature_image}} alt="main-photo">
+    <div class="photo-card-container">
+        <div class="photo-card-bg" id="card">
+            {{#if feature_image}}
+                <img id="bg-blur" class="bg-blur" src={{img_url feature_image}} alt="blurred-bg">
+                <img id="main-photo" class="main-photo" src={{img_url feature_image}} alt="main-photo">
+            {{else}}
+                {{#if @site.cover_image}}
+                    <img id="bg-blur" class="bg-blur" src={{@site.cover_image}} alt="blurred-bg">
+                    <img id="main-photo" class="main-photo" src={{@site.cover_image}} alt="main-photo">
+                {{/if}}
+            {{/if}}
+            {{#if @site.cover_image}}
+
+            {{/if}}
+            <div class="photo-info" id="photoInfo" data-alt="{{feature_image_alt}}">
+            </div>
+        </div>
+    </div>
+
+    <aside class="cover"
+        {{#if feature_image}}
+            style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{img_url feature_image}});"
         {{else}}
-            {{#if @site.cover_image}} 
-                <img id="bg-blur" class="bg-blur" src={{@site.cover_image}} alt="blurred-bg">
-                <img id="main-photo" class="main-photo" src={{@site.cover_image}} alt="main-photo">
+            {{#if @site.cover_image}}
+                style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{@site.cover_image}});"
             {{/if}}
-        {{/if}}	
-        {{#if @site.cover_image}} 
-
-        {{/if}}
-        <div class="photo-info" id="photoInfo" data-alt="{{feature_image_alt}}">
+        {{/if}}>
+        <div class="cover-content">
+            <div class="container">
+                {{#if @site.logo}}
+                    <div class="cover-logo">
+                        <a href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" class="small-logo"></a>
+                    </div>
+                {{/if}}
+                <h1 class="cover-headline">{{title}}</h1>
+                <p class="cover-text">{{#if tags}}&mdash; {{tags separator=", "}} &mdash;{{/if}}</p>
+            </div>
         </div>
-    </div>
-</div>
-
-<aside class="cover" 
-	{{#if feature_image}} 
-	    style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{img_url feature_image}});"
-	{{else}}
-		{{#if @site.cover_image}} 
-		    style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{@site.cover_image}});"
-        {{/if}}
-	{{/if}}>	
-	<div class="cover-content">
-		<div class="container">
-		    {{#if @site.logo}}
-            <div class="cover-logo">
-               <a href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" class="small-logo"></a> 
-            </div>            
-            {{/if}}
-			<h1 class="cover-headline">{{title}}</h1>
-			<p class="cover-text">{{#if tags}}&mdash; {{tags separator=", "}} &mdash;{{/if}}</p>
-		</div>		
-	</div>
-	<div class="cover-text-article-time">
-        <div class="container">
-            <strong>
-                <time datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">
-                   {{date format=' MMMM'}} {{date format='DD'}}, {{date format=' YYYY'}}	
-                </time>
-            </strong>	
-        </div>	    	
-	</div>
-</aside>
-{{! The post content on the right }}
-<main class="content">
-    <article class="article-content" role="article" itemscope itemtype="//schema.org/Article">
-        <div class="container">
-            {{! The tag below includes social sharing bar in the top of the post - partials/social-share.hbs }}
-            {{> social-share}}                      
-            {{content}}
-            {{! The tag below includes social sharing bar in the bottom of the post - partials/social-share.hbs }}
-            {{> social-share}}
+        <div class="cover-text-article-time">
+            <div class="container">
+                <strong>
+                    <time datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">
+                        {{date format=' MMMM'}} {{date format='DD'}}, {{date format=' YYYY'}}
+                    </time>
+                </strong>
+            </div>
         </div>
-	</article>
-	{{! The tag below includes author details - partials/author.hbs }}
-	{{> author-details}}
-	{{! The tag below includes read more section in the post - partials/read-more.hbs }}	
-	{{> read-more}}
-</main>
-{{! The tag below includes post comments - partials/comments.hbs }}
-{{> comments}}
+    </aside>
+
+    {{! The post content on the right }}
+    <main class="content">
+        <article class="article-content" role="article" itemscope itemtype="//schema.org/Article">
+            <div class="container">
+                {{! The tag below includes social sharing bar in the top of the post - partials/social-share.hbs }}
+                {{> social-share}}
+                {{content}}
+                {{! The tag below includes social sharing bar in the bottom of the post - partials/social-share.hbs }}
+                {{> social-share}}
+            </div>
+        </article>
+        {{! The tag below includes author details - partials/author.hbs }}
+        {{> author-details}}
+        {{! The tag below includes read more section in the post - partials/read-more.hbs }}
+        {{> read-more}}
+    </main>
+    {{! The tag below includes post comments - partials/comments.hbs }}
+    {{> comments}}
+
 {{/post}}

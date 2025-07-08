@@ -294,11 +294,14 @@ function newFunction() {
       const parts = raw.split(",").map((s) => s.trim());
 
       // 逗号前部分用 <strong>，其余用 <em>
-      const html = parts
+      let html = parts
         .map((txt, idx) =>
           idx === 0 ? `<strong>${txt}</strong><br />` : `${txt}`
         )
         .join("");
+
+      html = html.replace(/Z/gi, " ℤ ");
+      console.log(html);
 
       info.innerHTML = html;
     });
