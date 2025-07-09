@@ -18,17 +18,69 @@ h6 {
   /* Required by gscan for wide/full images */
 }
 
+tooltip {
+  position: relative;
+  cursor: default;
+}
+
+.tooltip {
+  position: relative;
+  cursor: default;
+}
+.tooltip .tooltiptext {
+  position: absolute;
+  top: 30px;
+  left: calc(100% - 93px);
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+  font-size: 16px;
+}
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent rgba(255,255,255,0.15) transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+  opacity: 1;
+  visibility: visible;
+}
+
 .toggle-area-button {
   position: absolute;
-  width: 100%;
+  width: 320px;
   height: 38px;
-  top: 39px;
-  left: 10rem;
+  top: 31px;
+  left: 160px;
   transform: translateX(-50%);
+  padding: 10px;
   z-index: 3000;
   cursor: pointer;
   text-align: center;
   display: inline-block;
+  transition: 0.2s ease-out;
+}
+
+@media screen and (max-width: 800px) {
+  .toggle-area-button {
+    top: 3px;
+    padding: 0;
+    left: 135px;
+  }
 }
 
 /* .pta-title {
@@ -239,9 +291,9 @@ h6 {
   transition: box-shadow 0.18s, background 0.18s; */
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 16px;
+  border-radius: 18px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
     inset 0 4px 20px rgba(255, 255, 255, 0.3);
   isolation: isolate;

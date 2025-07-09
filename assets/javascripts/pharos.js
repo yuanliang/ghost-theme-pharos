@@ -345,7 +345,7 @@ function newFunction() {
 
       if (s === "camera") {
         // 仅照片模式：隐藏文章，只显示照片
-        zenToggleGroups.camera.classList.add("zen-toggle-group-active");
+        zenToggleGroups.text.classList.add("zen-toggle-group-active");
         zenToggleState = "camera";
 
         $("body").css("overflow", "hidden"); // 禁止body滚动
@@ -359,7 +359,7 @@ function newFunction() {
 
       if (s === "text") {
         // 仅文章模式：隐藏照片，只显示文章
-        zenToggleGroups.text.classList.add("zen-toggle-group-active");
+        zenToggleGroups.camera.classList.add("zen-toggle-group-active");
         zenToggleState = "text";
         $("body").css("overflow", ""); // 恢复body滚动
         $(".content").show();
