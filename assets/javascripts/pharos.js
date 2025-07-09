@@ -325,52 +325,62 @@ function newFunction() {
       zenToggleGroups.camera.classList.remove("zen-toggle-group-active");
       zenToggleGroups.text.classList.remove("zen-toggle-group-active");
       zenToggleBothBtn.classList.remove("zen-toggle-btn-active");
+
       if (s === "both") {
+        // 两栏布局：同时显示文章和照片
         zenToggleBothBtn.classList.add("zen-toggle-btn-active");
         zenToggleState = "both";
-        // 右侧切换器也恢复到“只看照片”
-        zenToggleGroups.camera.classList.add("zen-toggle-group-active");
-        zenToggleGroups.text.classList.remove("zen-toggle-group-active");
+        // 右侧切换器显示"文章"图标（表示可以切换到仅文章模式）
+        zenToggleGroups.camera.classList.remove("zen-toggle-group-active");
+        zenToggleGroups.text.classList.add("zen-toggle-group-active");
+
+        $("body").css("overflow", ""); // 恢复body滚动
         $(".content").show();
         $(".cover").removeClass("show-article");
         $(".content").removeClass("show-article-content");
-        $(".photo-card-bg").hide();
-        $(".photo-card-container").hide();
+        $(".photo-card-bg").css("display", "none");
+        $(".photo-card-container").css("display", "none");
         $(".pta-title").css("display", "none");
       }
+
       if (s === "camera") {
+        // 仅照片模式：隐藏文章，只显示照片
         zenToggleGroups.camera.classList.add("zen-toggle-group-active");
         zenToggleState = "camera";
 
-        $(".content").show();
-        $(".cover").addClass("show-article");
-        $(".content").addClass("show-article-content");
-        $(".photo-card-bg").hide();
-        $(".photo-card-container").hide();
-        $(".pta-title").css("display", "none");
-      }
-      if (s === "text") {
-        zenToggleGroups.text.classList.add("zen-toggle-group-active");
-        zenToggleState = "text";
+        $("body").css("overflow", "hidden"); // 禁止body滚动
+        $(".content").hide();
         $(".cover").removeClass("show-article");
         $(".content").removeClass("show-article-content");
-        $(".content").hide();
         $(".photo-card-bg").css("display", "flex");
         $(".photo-card-container").css("display", "flex");
         $(".pta-title").css("display", "block");
       }
+
+      if (s === "text") {
+        // 仅文章模式：隐藏照片，只显示文章
+        zenToggleGroups.text.classList.add("zen-toggle-group-active");
+        zenToggleState = "text";
+        $("body").css("overflow", ""); // 恢复body滚动
+        $(".content").show();
+        $(".cover").addClass("show-article");
+        $(".content").addClass("show-article-content");
+        $(".photo-card-bg").css("display", "none");
+        $(".photo-card-container").css("display", "none");
+        $(".pta-title").css("display", "none");
+      }
     }
 
-    // 右侧SVG只在camera/text间切换
+    // 右侧SVG切换：在both和camera之间切换
     zenToggleSwitch.onclick = () => {
       if (zenToggleState === "text") zenToggleSetState("camera");
       else zenToggleSetState("text");
     };
 
-    // 左侧按钮恢复both，并让右侧回到“只看照片”
+    // 左侧按钮：切换到仅文章模式
     zenToggleBothBtn.onclick = () => zenToggleSetState("both");
 
-    // 默认只看照片
+    // 默认两栏布局
     zenToggleSetState("both");
   }
 })();

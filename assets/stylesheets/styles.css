@@ -124,12 +124,23 @@ h6 {
   float: none;
   width: 100%;
   position: static;
-  height: 200px;
   padding-top: 100px;
+  display: table;
+  height: 380px;
 }
 
+.post-template .show-article .cover-headline,
+.post-template .show-article .cover-content .cover-text,
+.post-template .show-article .cover-text-article-time {
+  text-align: center;
+  position: static;
+}
+
+.post-template .show-article .cover-content,
+.post-template .show-article .article-content,
 .post-template .show-article-content {
   width: 100%;
+  display: block;
 }
 
 .post-template .show-article .cover-content .cover-headline {
@@ -141,13 +152,17 @@ h6 {
   padding: 0;
   box-sizing: border-box;
   background: #232424;
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
+  height: 100vh;
   justify-content: center;
   align-items: center;
   display: none;
   padding-top: 60px;
   overflow: hidden;
+  z-index: 1000;
 }
 
 .photo-card-bg {
