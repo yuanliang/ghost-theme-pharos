@@ -286,7 +286,7 @@ function newFunction() {
     //   // alert('showArticle');
     // }
     if($('.cover-headline').text() == 'Douban'){ 
-      $('.cover-headline').css('color', '#072');
+      $('.cover-headline').get(0).style.setProperty('color', '#072', 'important');
     }
 
     function isInChina(cb) {

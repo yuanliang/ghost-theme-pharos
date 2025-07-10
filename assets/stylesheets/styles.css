@@ -350,7 +350,7 @@ tooltip {
 }
 .douban-title {
   font-weight: bold;
-  color: #072;
+  color: #072 !important;
   text-align: center;
 }
 .douban-gallery table {
@@ -429,6 +429,18 @@ tooltip {
   .article-item:nth-child(even) {
     background: #a3a3a3 !important;
   }
+  .article-item .article-item-headline a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #f3f3f3 !important;
+  }
+  body {
+    color: #f6f6f6 !important;
+  }
 }
 
 /* Safari 兼容性修复 */
@@ -489,11 +501,13 @@ tooltip {
     color: #fff;
   }
 }
-.cover-headline { font-weight: bold;}
+.cover-headline {
+  font-weight: bold;
+}
 .cover-headline,
 .cover-text {
   /* 极细、透明度低的阴影，提升可读性但不突兀 */
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
