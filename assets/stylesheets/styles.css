@@ -48,6 +48,7 @@ tooltip {
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
+  left:-12px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 12px;
@@ -109,7 +110,10 @@ tooltip {
 
 @media screen and (max-width: 800px) {
   .toggle-area-button {
-    top: 16px;
+    top: 18px;
+  }
+  .tooltip .tooltiptext {
+    top: 20px;
   }
 }
 
