@@ -1,11 +1,16 @@
-# pharos
-yuanliang.run's theme for ghost. (Based on Journal Ghost theme)
+# Pharos
+
+yuanliang.io's theme for ghost. (Based on Journal Ghost theme)
+
+Support ghost 5.129.0+
 
 ***DEMO Site***
+
 https://yuanliang.io
 
 
 Pharos Ghost theme is licensed under the General Public
+
 License (MIT).
 
 ```bash
@@ -15,4 +20,5 @@ npm clean
 ```
 
 Modify in July 2016. by Yuan Liang (yuanliang@me.com)
+
 Thanks Stefan Djokic(djokics@elfak.rs) for Developed Journal Ghost theme in July 2015.
