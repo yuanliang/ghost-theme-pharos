@@ -48,7 +48,7 @@ tooltip {
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
-  left:-12px;
+  left: -12px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 12px;
@@ -360,7 +360,7 @@ tooltip {
   border-spacing: 10px;
 }
 .douban-gallery td {
-  width: 25%;              /* 四列等宽 */
+  width: 25%; /* 四列等宽 */
   padding: 4px;
   position: relative;
   overflow: hidden;
@@ -369,7 +369,7 @@ tooltip {
 .douban-gallery td::before {
   content: "";
   display: block;
-  padding-top: 150%;  /* 高度 = 宽度 * 1.5 (2:3) */    /* 高 = 宽，正方形 */
+  padding-top: 150%; /* 高度 = 宽度 * 1.5 (2:3) */ /* 高 = 宽，正方形 */
 }
 .douban-gallery td img {
   position: absolute;
@@ -380,14 +380,14 @@ tooltip {
   object-fit: cover;
   display: block;
 }
-.douban-gallery tr:nth-last-child(-n+2) td img {
+.douban-gallery tr:nth-last-child(-n + 2) td img {
   position: static !important;
   width: auto !important;
   height: auto !important;
   object-fit: none !important;
 }
-.douban-gallery tr:nth-last-child(-n+2) td::before  {
-  padding: 10px
+.douban-gallery tr:nth-last-child(-n + 2) td::before {
+  padding: 10px;
 }
 /* 黑暗模式自动切换 */
 @media (prefers-color-scheme: dark) {
@@ -488,4 +488,12 @@ tooltip {
   .zen-toggle-btn {
     color: #fff;
   }
+}
+.cover-headline { font-weight: bold;}
+.cover-headline,
+.cover-text {
+  /* 极细、透明度低的阴影，提升可读性但不突兀 */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
