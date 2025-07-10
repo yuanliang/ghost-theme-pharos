@@ -348,6 +348,11 @@ tooltip {
   transform: scale(1);
   pointer-events: auto;
 }
+.douban-title {
+  font-weight: bold;
+  color: #072;
+  text-align: center;
+}
 .douban-gallery table {
   table-layout: fixed;
   width: 100%;

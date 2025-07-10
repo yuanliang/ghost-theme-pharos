@@ -285,6 +285,9 @@ function newFunction() {
     //   $(".pta-title").css("display", "none");
     //   // alert('showArticle');
     // }
+    if($('.cover-headline').text() == 'Douban'){ 
+      $('.cover-headline').css('color', '#072');
+    }
 
     function isInChina(cb) {
       var url = "//graph.facebook.com/feed?callback=h";
