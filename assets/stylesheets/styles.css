@@ -53,7 +53,7 @@ tooltip {
   font-size: 12px;
   border-width: 6px;
   border-style: solid;
-  border-color: transparent rgba(255,255,255,0.15) transparent transparent;
+  border-color: transparent rgba(255, 255, 255, 0.15) transparent transparent;
 }
 .tooltip:hover .tooltiptext {
   opacity: 1;
@@ -282,6 +282,14 @@ tooltip {
   flex-direction: column;
   align-items: center;
 }
+.toggle-wrapper {
+  display: inline-block; /* shrink-wrap to SVG */
+  width: 38px;
+  height: 38px; /* match SVG size */
+  border-radius: 50%;
+  overflow: hidden; /* clip child to circle */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
 .zen-toggle-btn {
   width: 38px;
   height: 38px;
@@ -290,8 +298,8 @@ tooltip {
   box-shadow: 0 2px 8px 0 #0002, 0 1.5px 4px 0 #fff8 inset;
   transition: box-shadow 0.18s, background 0.18s; */
   background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
   backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
@@ -299,6 +307,11 @@ tooltip {
   isolation: isolate;
   overflow: hidden;
   display: block;
+  /* Safari 兼容性修复 */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
 }
 .zen-toggle-btn:active,
 .zen-toggle-btn:hover {
@@ -331,6 +344,42 @@ tooltip {
   transform: scale(1);
   pointer-events: auto;
 }
+.douban-gallery table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate; /* 确保 border-spacing 生效 */
+  border-spacing: 10px;
+}
+.douban-gallery td {
+  width: 25%;              /* 四列等宽 */
+  padding: 4px;
+  position: relative;
+  overflow: hidden;
+}
+/* 创建真正正方形单元格 */
+.douban-gallery td::before {
+  content: "";
+  display: block;
+  padding-top: 150%;  /* 高度 = 宽度 * 1.5 (2:3) */    /* 高 = 宽，正方形 */
+}
+.douban-gallery td img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.douban-gallery tr:nth-last-child(-n+2) td img {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: none !important;
+}
+.douban-gallery tr:nth-last-child(-n+2) td::before  {
+  padding: 10px
+}
 /* 黑暗模式自动切换 */
 @media (prefers-color-scheme: dark) {
   body {
@@ -339,6 +388,11 @@ tooltip {
   .zen-toggle-btn {
     background: linear-gradient(120deg, #222 80%, #444 100%);
     box-shadow: 0 4px 16px #000b;
+    /* Safari 兼容性修复 */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
   }
   .zen-toggle-btn.zen-toggle-btn-active .zen-toggle-btn-border {
     stroke: #fff;
@@ -365,5 +419,64 @@ tooltip {
   }
   .article-item:nth-child(even) {
     background: #a3a3a3 !important;
+  }
+}
+
+/* Safari 兼容性修复 */
+@supports (-webkit-backdrop-filter: none) {
+  .zen-toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+  }
+}
+
+/* 对于不支持 backdrop-filter 的浏览器 */
+@supports not (backdrop-filter: blur(12px)) {
+  .zen-toggle-btn {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* SVG 兼容性修复 */
+.zen-toggle-btn svg {
+  background: transparent !important;
+  -webkit-background: transparent !important;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.zen-toggle-btn svg path,
+.zen-toggle-btn svg rect,
+.zen-toggle-btn svg circle {
+  background: transparent !important;
+  -webkit-background: transparent !important;
+}
+
+/* Safari 特定的 SVG 修复 */
+@supports (-webkit-appearance: none) {
+  .zen-toggle-btn svg {
+    background: transparent !important;
+    -webkit-background: transparent !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* 确保 currentColor 在 Safari 中正确工作 */
+.zen-toggle-btn {
+  color: #333;
+}
+
+.zen-toggle-btn svg {
+  color: inherit;
+}
+
+/* 黑暗模式下的颜色 */
+@media (prefers-color-scheme: dark) {
+  .zen-toggle-btn {
+    color: #fff;
   }
 }
