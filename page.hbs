@@ -21,18 +21,18 @@
             </div>            
             {{/if}}
 			      {{!-- only show header if show_title_and_feature_image = true --}}
-			{{!-- {{#match @page.show_title_and_feature_image}}
+			{{#match @page.show_title_and_feature_image}}
 				<header class="page-header gh-canvas">
-				<h1 class="page-title">{{title}}</h1>
-
+				<h1 class="cover-headline">{{title}}</h1>
+				{{!-- <h1 class="page-title">{{title}}</h1> --}}
+{{!-- 
 				{{#if feature_image}}
 					<figure class="page-feature-image">
 					<img src="{{img_url feature_image size="l"}}" alt="{{title}}">
 					</figure>
-				{{/if}}
+				{{/if}} --}}
 				</header>
-			{{/match}} --}}
-			<h1 class="cover-headline">{{title}}</h1>
+			{{/match}}
 		</div>		
 	</div>
 	{{! The tag below includes social links on the left - partials/social-links.hbs }}	
