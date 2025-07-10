@@ -423,11 +423,17 @@ tooltip {
   }
   .author,
   .pagination {
-    background-color: #555555 !important;
+    background-color: #3333 !important;
     color: #d5d5d5 !important;
   }
   .article-item:nth-child(even) {
-    background: #a3a3a3 !important;
+    background: #333 !important;
+  }
+  .article-item .article-item-tag a {
+    color: #777 !important;
+  }
+  .article-item .article-item-time {
+    color: #999 !important;
   }
   .article-item .article-item-headline a,
   h1,
