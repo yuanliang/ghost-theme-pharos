@@ -18,10 +18,10 @@ h6 {
   /* Required by gscan for wide/full images */
 }
 
-tooltip {
-  position: relative;
-  cursor: default;
-}
+.article-content .social-sharing-bar .button {
+  margin-right: 7px;
+} 
+
 
 .tooltip {
   position: relative;
