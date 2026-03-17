@@ -1,0 +1,20 @@
+<script>
+(function () {
+    var hasCodeBlocks = document.querySelector('pre code, pre[class*="language-"], code[class*="language-"], .kg-code-card');
+
+    if (!hasCodeBlocks) {
+        return;
+    }
+
+    var codeStyles = document.createElement('link');
+    codeStyles.rel = 'stylesheet';
+    codeStyles.type = 'text/css';
+    codeStyles.href = '{{asset "/stylesheets/code.css"}}';
+    document.head.appendChild(codeStyles);
+
+    var codeScript = document.createElement('script');
+    codeScript.defer = true;
+    codeScript.src = '{{asset "/javascripts/code.js"}}';
+    document.body.appendChild(codeScript);
+})();
+</script>

@@ -11,6 +11,18 @@ h6 {
   font-family: var(--gh-font-heading, Georgia, serif);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* 让 gscan 验证通过：即使不设置样式也需要声明 */
 .kg-width-full img,
 .kg-width-wide img {
@@ -22,6 +34,41 @@ h6 {
   margin-right: 7px;
 } 
 
+.social-sharing-bar .toggle-comments {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comments-placeholder {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.comments-status {
+  margin: 0;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.comments-status.is-error {
+  color: #b42318;
+}
+
+.comments-load[disabled] {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.comments:not(.is-ready) #disqus_thread {
+  display: none;
+}
+
+.comments.is-ready .comments-placeholder {
+  display: none;
+}
+
 
 .tooltip {
   position: relative;
@@ -29,39 +76,178 @@ h6 {
 }
 .tooltip .tooltiptext {
   position: absolute;
-  top: 30px;
-  left: calc(100% - 93px);
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translate(-50%, -4px);
+  background: color-mix(in srgb, var(--zen-toggle-panel, rgba(13, 17, 24, 0.82)) 92%, #0b0d11);
+  backdrop-filter: blur(16px) saturate(150%);
+  color: var(--zen-toggle-ink, rgba(248, 250, 252, 0.94));
+  padding: 7px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--zen-toggle-panel-border, rgba(255, 255, 255, 0.14));
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
   pointer-events: none;
   z-index: 10;
-  font-size: 16px;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 18px 32px -28px rgba(0, 0, 0, 0.48);
 }
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
-  left: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 12px;
-  border-width: 6px;
-  border-style: solid;
-  border-color: transparent rgba(255, 255, 255, 0.15) transparent transparent;
+  left: 50%;
+  top: -7px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: color-mix(in srgb, var(--zen-toggle-panel, rgba(13, 17, 24, 0.82)) 92%, #0b0d11);
+  border-top: 1px solid var(--zen-toggle-panel-border, rgba(255, 255, 255, 0.14));
+  border-left: 1px solid var(--zen-toggle-panel-border, rgba(255, 255, 255, 0.14));
 }
 .tooltip:hover .tooltiptext {
   opacity: 1;
   visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.cover-action-cluster,
+.cover-action-button,
+.photo-stage__controls,
+.photo-stage__button,
+.photo-info {
+  --zen-toggle-ink: rgb(244, 247, 250);
+  --zen-toggle-surface: rgba(255, 255, 255, 0.18);
+  --zen-toggle-surface-hover: rgba(255, 255, 255, 0.24);
+  --zen-toggle-surface-active: rgba(255, 255, 255, 0.3);
+  --zen-toggle-border: rgba(255, 255, 255, 0.42);
+  --zen-toggle-border-active: rgba(255, 255, 255, 0.58);
+  --zen-toggle-panel: rgba(10, 14, 20, 0.18);
+  --zen-toggle-panel-border: rgba(255, 255, 255, 0.12);
+  --zen-toggle-shadow: rgba(6, 10, 16, 0.28);
+  --zen-toggle-highlight: rgba(255, 255, 255, 0.22);
+}
+
+.cover-action-cluster {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  top: 1.75rem;
+  right: calc(50vw + 1.75rem);
+  padding: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--zen-toggle-panel) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--zen-toggle-panel-border) 72%, transparent);
+  box-shadow:
+    0 18px 34px -30px var(--zen-toggle-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+  backdrop-filter: blur(14px) saturate(145%);
+  z-index: 3200;
+  transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
+}
+
+body.post-layout-reading .cover-action-cluster,
+body.post-layout-camera .cover-action-cluster {
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+.cover-action-cluster.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+.reading-mode-control,
+.photo-entry-control {
+  position: relative;
+  display: flex;
+}
+
+.reading-mode-control.is-hidden,
+.photo-entry-control.is-hidden {
+  display: none;
+}
+
+.cover-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--zen-toggle-surface) 72%, transparent);
+  color: var(--zen-toggle-ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%);
+  transition:
+    transform 0.2s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    color 0.22s ease;
+}
+
+.cover-action-button:hover,
+.cover-action-button:focus-visible {
+  background: color-mix(in srgb, var(--zen-toggle-surface-hover) 84%, transparent);
+  border-color: color-mix(in srgb, var(--zen-toggle-border-active) 82%, transparent);
+  transform: translateY(-1px);
+}
+
+.cover-action-button:focus-visible {
+  outline: 2px solid var(--zen-toggle-border-active);
+  outline-offset: 2px;
+}
+
+.cover-action-button.is-active {
+  background: color-mix(in srgb, var(--zen-toggle-surface-active) 88%, transparent);
+  border-color: color-mix(in srgb, var(--zen-toggle-border-active) 88%, transparent);
+  box-shadow:
+    0 16px 26px -24px var(--zen-toggle-shadow),
+    inset 0 1px 0 var(--zen-toggle-highlight);
+}
+
+.cover-action-button svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+}
+
+.cover-action-button span {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.cover-action-button-photo {
+  min-width: 86px;
 }
 
 .toggle-area-button {
+  --zen-toggle-ink: rgb(244, 247, 250);
+  --zen-toggle-surface: rgba(255, 255, 255, 0.18);
+  --zen-toggle-surface-hover: rgba(255, 255, 255, 0.24);
+  --zen-toggle-surface-active: rgba(255, 255, 255, 0.3);
+  --zen-toggle-border: rgba(255, 255, 255, 0.42);
+  --zen-toggle-border-active: rgba(255, 255, 255, 0.58);
+  --zen-toggle-panel: rgba(10, 14, 20, 0.18);
+  --zen-toggle-panel-border: rgba(255, 255, 255, 0.12);
+  --zen-toggle-shadow: rgba(6, 10, 16, 0.28);
+  --zen-toggle-highlight: rgba(255, 255, 255, 0.22);
   position: absolute;
   width: 320px;
   height: 38px;
@@ -74,6 +260,10 @@ h6 {
   text-align: center;
   display: inline-block;
   transition: 0.2s ease-out;
+}
+
+.toggle-area-button.is-hidden {
+  display: none;
 }
 
 @media screen and (max-width: 800px) {
@@ -113,7 +303,7 @@ h6 {
     top: 18px;
   }
   .tooltip .tooltiptext {
-    top: 20px;
+    top: calc(100% + 10px);
   }
 }
 
@@ -205,9 +395,9 @@ h6 {
 
 .photo-card-container {
   margin: 0;
-  padding: 0;
+  padding: 60px 0 calc(32px + env(safe-area-inset-bottom, 0px));
   box-sizing: border-box;
-  background: #232424;
+  background: #101318;
   position: fixed;
   top: 0;
   left: 0;
@@ -216,7 +406,6 @@ h6 {
   justify-content: center;
   align-items: center;
   display: none;
-  padding-top: 60px;
   overflow: hidden;
   z-index: 1000;
 }
@@ -233,6 +422,15 @@ h6 {
   z-index: 2000;
   display: none;
 }
+
+.photo-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .bg-blur {
   position: fixed;
   inset: 0;
@@ -247,70 +445,233 @@ h6 {
 .main-photo {
   position: relative;
   z-index: 1;
-  box-shadow: 0 2px 8px 8px rgba(0, 0, 0, 0.17);
-  border-radius: 8px;
-  background: #111;
+  max-width: min(80vw, calc(100vw - 72px));
+  max-height: calc(100vh - 170px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 26px 54px -28px rgba(0, 0, 0, 0.52);
+  border-radius: 12px;
+  background: #111317;
   display: block;
   margin: 0 auto;
-  /* 宽高通过JS控制 */
 }
+
+.photo-stage__controls {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.photo-stage__controls[hidden] {
+  display: none;
+}
+
+.photo-stage__counter {
+  min-width: 48px;
+  min-height: 28px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(8, 11, 17, 0.42);
+  color: var(--zen-toggle-ink);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  box-shadow:
+    0 14px 24px -22px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%);
+}
+
+.photo-stage__button {
+  width: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--zen-toggle-border) 74%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--zen-toggle-surface) 74%, transparent);
+  color: var(--zen-toggle-ink);
+  box-shadow:
+    0 16px 28px -22px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 var(--zen-toggle-highlight);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%);
+  transition:
+    transform 0.2s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.photo-stage__button:hover,
+.photo-stage__button:focus-visible {
+  background: var(--zen-toggle-surface-hover);
+  border-color: var(--zen-toggle-border-active);
+  transform: translateY(-1px);
+}
+
+.photo-stage__button:focus-visible {
+  outline: 2px solid var(--zen-toggle-border-active);
+  outline-offset: 2px;
+}
+
+.photo-stage__button svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.photo-stage__button span {
+  display: none;
+}
+
+.photo-stage__button path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .photo-info {
   position: relative;
   z-index: 2;
-  margin-top: 30px;
-  color: #fff;
-  font-family: "Open Sans", "Montserrat", "Roboto", "Inter", "PingFang SC",
-    Arial, sans-serif;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
-  font-size: 1.22rem;
+  margin: 18px auto calc(14px + env(safe-area-inset-bottom, 0px));
+  max-width: min(74vw, 560px);
+  color: var(--zen-toggle-ink, rgba(255, 255, 255, 0.94));
+  font-family: "Open Sans", "PingFang SC", Arial, sans-serif;
   text-align: center;
   pointer-events: none;
   user-select: none;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-  padding: 0.6em 1.2em 0.3em 1.2em;
-  min-width: 200px;
+  background: rgba(9, 12, 18, 0.18);
+  border-radius: 16px;
+  padding: 12px 16px 10px;
+  min-width: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   letter-spacing: 0.01em;
-  backdrop-filter: blur(2px);
-  font-size: 18px;
-  line-height: 1.8;
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: 0 18px 34px -32px rgba(0, 0, 0, 0.52);
+  line-height: 1.7;
+}
+
+.photo-info:empty {
+  display: none;
 }
 
 .photo-info strong {
-  font-weight: bold;
-  font-size: 1.5em;
+  display: block;
+  font-weight: 700;
+  font-size: 1.16rem;
+  line-height: 1.45;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.3);
+}
+
+.photo-info__meta {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.photo-info__pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.photo-info__caption {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.article-content img {
+  height: auto;
+}
+
+.article-content figure.kg-image-card img,
+.article-content img.kg-image {
+  cursor: zoom-in;
 }
 
 .zen-toggle-namespace-wrapper {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--zen-toggle-panel);
+  border: 1px solid var(--zen-toggle-panel-border);
+  box-shadow:
+    0 18px 40px -20px var(--zen-toggle-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  transition:
+    background 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.zen-toggle-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .toggle-wrapper {
-  display: inline-block; /* shrink-wrap to SVG */
-  width: 38px;
-  height: 38px; /* match SVG size */
-  border-radius: 50%;
-  overflow: hidden; /* clip child to circle */
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  display: block;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
 }
 .zen-toggle-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  /* background: linear-gradient(120deg, #dedede 80%, #f3f3f3 100%);
-  box-shadow: 0 2px 8px 0 #0002, 0 1.5px 4px 0 #fff8 inset;
-  transition: box-shadow 0.18s, background 0.18s; */
-  background: rgba(255, 255, 255, 0.15);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
-    inset 0 4px 20px rgba(255, 255, 255, 0.3);
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border-radius: 14px;
+  cursor: pointer;
+  color: var(--zen-toggle-ink);
+  background: var(--zen-toggle-surface);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid var(--zen-toggle-border);
+  box-shadow:
+    0 18px 28px -22px var(--zen-toggle-shadow),
+    inset 0 1px 0 var(--zen-toggle-highlight),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
   isolation: isolate;
   overflow: hidden;
   display: block;
+  transition:
+    transform 0.2s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease;
   /* Safari 兼容性修复 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -319,15 +680,37 @@ h6 {
 }
 .zen-toggle-btn:active,
 .zen-toggle-btn:hover {
-  background: linear-gradient(120deg, #f3f3f3 80%, #fff 100%);
-  box-shadow: 0 4px 16px 0 #0003, 0 1.5px 4px 0 #fff8 inset;
+  background: var(--zen-toggle-surface-hover);
+  border-color: var(--zen-toggle-border-active);
+  box-shadow:
+    0 22px 36px -24px var(--zen-toggle-shadow),
+    inset 0 1px 0 var(--zen-toggle-highlight);
+  transform: translateY(-1px);
+}
+
+.zen-toggle-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.zen-toggle-btn:focus-visible {
+  outline: 2px solid var(--zen-toggle-border-active);
+  outline-offset: 2px;
+}
+
+.zen-toggle-btn.zen-toggle-btn-active {
+  background: var(--zen-toggle-surface-active);
+  border-color: var(--zen-toggle-border-active);
+  box-shadow:
+    0 22px 40px -24px var(--zen-toggle-shadow),
+    inset 0 1px 0 var(--zen-toggle-highlight),
+    0 0 0 1px var(--zen-toggle-border-active);
 }
 .zen-toggle-btn.zen-toggle-btn-active .zen-toggle-btn-border {
   opacity: 1;
-  stroke: #222;
+  stroke: currentColor;
 }
 .zen-toggle-tw {
-  background: transparent;
+  background: inherit;
 }
 .zen-toggle-tw path {
   transform-origin: center;
@@ -389,37 +772,149 @@ h6 {
 .douban-gallery tr:nth-last-child(-n + 2) td::before {
   padding: 10px;
 }
+
+@media screen and (max-width: 800px) {
+  .post-template .cover {
+    position: relative;
+  }
+
+  .cover-action-cluster {
+    --zen-toggle-ink: rgb(250, 245, 238);
+    --zen-toggle-surface: rgba(107, 84, 62, 0.68);
+    --zen-toggle-surface-hover: rgba(119, 93, 69, 0.76);
+    --zen-toggle-surface-active: rgba(89, 67, 49, 0.82);
+    --zen-toggle-border: rgba(255, 237, 216, 0.26);
+    --zen-toggle-border-active: rgba(255, 237, 216, 0.38);
+    --zen-toggle-panel: transparent;
+    --zen-toggle-panel-border: transparent;
+    --zen-toggle-shadow: rgba(26, 18, 10, 0.34);
+    --zen-toggle-highlight: rgba(255, 255, 255, 0.14);
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    gap: 0;
+    padding: 0;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  body.post-layout-reading .cover-action-cluster,
+  body.post-layout-camera .cover-action-cluster {
+    position: fixed;
+    top: 14px;
+  }
+
+  body.post-layout-reading .cover {
+    display: none;
+  }
+
+  .reading-mode-control {
+    display: none !important;
+  }
+
+  .cover-action-button {
+    min-height: 38px;
+    padding: 0 14px;
+    background: var(--zen-toggle-surface);
+    border-color: var(--zen-toggle-border);
+    color: var(--zen-toggle-ink);
+    box-shadow:
+      inset 0 1px 0 var(--zen-toggle-highlight),
+      inset 0 -1px 0 rgba(45, 31, 21, 0.22),
+      0 14px 28px -18px var(--zen-toggle-shadow);
+    -webkit-backdrop-filter: blur(12px) saturate(135%);
+    backdrop-filter: blur(12px) saturate(135%);
+  }
+
+  .cover-action-button:hover,
+  .cover-action-button:focus-visible,
+  .cover-action-button.is-active {
+    background: var(--zen-toggle-surface-hover);
+    border-color: var(--zen-toggle-border-active);
+  }
+
+  .cover-action-button svg {
+    width: 16px;
+    height: 16px;
+    flex-basis: 16px;
+  }
+
+  .cover-action-button span {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .cover-action-button-photo {
+    min-width: 0;
+  }
+
+  .photo-card-container {
+    padding: 86px 18px calc(34px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .main-photo {
+    max-width: calc(100vw - 36px);
+    max-height: calc(100vh - 148px);
+  }
+
+  .photo-stage__controls {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .photo-stage__counter {
+    min-height: 28px;
+    padding: 0 10px;
+  }
+
+  .photo-stage__button {
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .photo-info {
+    margin-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    max-width: calc(100vw - 36px);
+    min-width: 0;
+  }
+}
+
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .post-template .cover {
+    position: relative;
+  }
+
+  .cover-action-cluster {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  body.post-layout-reading .cover-action-cluster,
+  body.post-layout-camera .cover-action-cluster {
+    position: fixed;
+    top: 10px;
+  }
+
+  .cover-action-button {
+    min-height: 34px;
+    padding: 0 10px;
+  }
+
+  .cover-action-button span {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+}
+
 /* 黑暗模式自动切换 */
 @media (prefers-color-scheme: dark) {
   body {
     background: #191919;
-  }
-  .zen-toggle-btn {
-    background: linear-gradient(120deg, #222 80%, #444 100%);
-    box-shadow: 0 4px 16px #000b;
-    /* Safari 兼容性修复 */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
-  }
-  .zen-toggle-btn.zen-toggle-btn-active .zen-toggle-btn-border {
-    stroke: #fff;
-  }
-  .zen-toggle-shape,
-  .zen-toggle-stroke {
-    stroke: #fff !important;
-  }
-  .zen-toggle-fill {
-    fill: #fff !important;
-  }
-  .zen-toggle-tw path {
-    fill: #fff !important;
-  }
-  .zen-toggle-btn:active,
-  .zen-toggle-btn:hover {
-    background: linear-gradient(120deg, #555555 80%, #333333 100%);
-    box-shadow: 0 4px 16px 0 #0003, 0 1.5px 4px 0 #555555 inset;
   }
   .author,
   .pagination {
@@ -451,16 +946,16 @@ h6 {
 
 /* Safari 兼容性修复 */
 @supports (-webkit-backdrop-filter: none) {
+  .zen-toggle-namespace-wrapper,
   .zen-toggle-btn {
-    background: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
   }
 }
 
 /* 对于不支持 backdrop-filter 的浏览器 */
 @supports not (backdrop-filter: blur(12px)) {
+  .zen-toggle-namespace-wrapper,
   .zen-toggle-btn {
-    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
@@ -494,18 +989,11 @@ h6 {
 
 /* 确保 currentColor 在 Safari 中正确工作 */
 .zen-toggle-btn {
-  color: #333;
+  color: var(--zen-toggle-ink);
 }
 
 .zen-toggle-btn svg {
   color: inherit;
-}
-
-/* 黑暗模式下的颜色 */
-@media (prefers-color-scheme: dark) {
-  .zen-toggle-btn {
-    color: #fff;
-  }
 }
 .cover-headline {
   font-weight: bold;

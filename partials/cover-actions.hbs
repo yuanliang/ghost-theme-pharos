@@ -1,0 +1,23 @@
+<div class="cover-action-cluster">
+    <div class="reading-mode-control tooltip">
+        <button type="button" id="reading-mode-btn" class="cover-action-button" aria-pressed="false" aria-label="切换阅读布局">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5zM6 6v12h5V6zm7 0v12h5V6z"/>
+            </svg>
+            <span>阅读</span>
+        </button>
+        <div class="tooltiptext">切换双栏与沉浸阅读</div>
+    </div>
+
+    {{#if enable_photo}}
+    <div class="photo-entry-control tooltip">
+        <button type="button" id="photo-entry-btn" class="cover-action-button cover-action-button-photo" aria-pressed="false" aria-label="查看摄影作品">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M8.2 5.5 9.5 4h5l1.3 1.5H19A2 2 0 0 1 21 7.5v9A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9A2 2 0 0 1 5 5.5zm3.8 3a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9m0 2a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5"/>
+            </svg>
+            <span id="photo-entry-label">作品</span>
+        </button>
+        <div class="tooltiptext" id="photo-entry-tooltip">进入摄影视图</div>
+    </div>
+    {{/if}}
+</div>

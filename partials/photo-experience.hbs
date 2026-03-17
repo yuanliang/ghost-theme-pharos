@@ -1,0 +1,21 @@
+{{#if enable_photo}}
+<div class="photo-card-container">
+    <div class="photo-card-bg" id="card">
+        <img id="bg-blur" class="bg-blur" {{#if feature_image}}src="{{img_url feature_image size="m"}}"{{/if}} alt="" aria-hidden="true">
+        <div class="photo-stage">
+            <img id="main-photo" class="main-photo" {{#if feature_image}}src="{{img_url feature_image size="xl"}}" fetchpriority="high"{{/if}} alt="{{title}}" decoding="async">
+            <div class="photo-stage__controls">
+                <div class="photo-stage__counter" id="photo-counter" aria-live="polite"></div>
+                <button type="button" class="photo-stage__button" id="photo-next-btn" aria-label="查看下一张照片">
+                    <span>下一张</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6.75 14.25 12 9 17.25"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="photo-info" id="photoInfo" data-alt="{{feature_image_alt}}" data-caption="{{feature_image_caption}}">
+        </div>
+    </div>
+</div>
+{{/if}}

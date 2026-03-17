@@ -1,0 +1,30 @@
+<aside class="cover"
+    {{#if feature_image}}
+        style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{img_url feature_image size="xl"}});"
+    {{else}}
+        {{#if @site.cover_image}}
+            style="background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), url({{@site.cover_image}});"
+        {{/if}}
+    {{/if}}>
+    {{> cover-actions enable_photo=enable_photo}}
+    <div class="cover-content">
+        <div class="container">
+            {{#if @site.logo}}
+                <div class="cover-logo">
+                    <a href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" class="small-logo" decoding="async"></a>
+                </div>
+            {{/if}}
+            <h1 class="cover-headline">{{title}}</h1>
+            <p class="cover-text">{{#if tags}}&mdash; {{tags separator=", "}} &mdash;{{/if}}</p>
+        </div>
+    </div>
+    <div class="cover-text-article-time">
+        <div class="container">
+            <strong>
+                <time datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">
+                    {{date format=' MMMM'}} {{date format='DD'}}, {{date format=' YYYY'}}
+                </time>
+            </strong>
+        </div>
+    </div>
+</aside>

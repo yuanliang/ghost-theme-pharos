@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{@site.locale}}">
 <head>
     {{! Document Settings }}
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -12,50 +12,28 @@
 
     {{! Styles }}
     <link rel="stylesheet"  type="text/css" href="{{ asset "/stylesheets/font-awesome.min.css" }}" />
-    <link rel="stylesheet"  type="text/css" href="{{ asset "/stylesheets/styles.css" }}" />
     <link rel="stylesheet"  type="text/css" href="{{ asset "/stylesheets/pharos.min.css" }}" />
-    <link rel="stylesheet"  type="text/css" href="{{ asset "/stylesheets/code.css" }}" />
+    <link rel="stylesheet"  type="text/css" href="{{ asset "/stylesheets/pharos.runtime.css" }}" />
+    <link rel="stylesheet"  type="text/css" href="{{ asset "/stylesheets/styles.css" }}" />
 
     {{! Responsive Meta Tags }}
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {{ghost_head}}
-
-    <style>
-        .preload {
-            position: absolute;
-            display: table;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: #fff;
-            z-index: 1000;
-            -webkit-transition: .2s cubic-bezier(.645, .045, .355, 1);
-               -moz-transition: .2s cubic-bezier(.645, .045, .355, 1);
-                 -o-transition: .2s cubic-bezier(.645, .045, .355, 1);
-                    transition: .2s cubic-bezier(.645, .045, .355, 1);
-        }
-
-        .preload.fade {
-            opacity: 0;
-            z-index: -1000
-        }
-    </style>
+    {{#is "home,tag,author"}}
+    {{ghost_head exclude="search,card_assets"}}
+    {{else}}
+    {{ghost_head exclude="search"}}
+    {{/is}}
 </head>
 <body class="{{body_class}}">
-
-    <div class="preload"></div>
 
     {{navigation}}
 
 	{{{body}}}
 
-    <script src="{{asset "/javascripts/jquery.min.js"}}"></script>
-    <script src="{{asset "/javascripts/pharos.js"}}"></script>
-    <script src="{{asset "/javascripts/code.js"}}"></script>
+    <script defer src="{{asset "/javascripts/pharos.js"}}"></script>
     {{ghost_foot}}
 </body>
 </html>

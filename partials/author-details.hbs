@@ -6,9 +6,10 @@
 		<div class="author-info">
 			<h3><a href="{{url}}">{{name}}</a></h3>
 			<p>{{bio}}</p>
-			<a href="{{website}}" target="_blank">{{website}}</a>
+			{{#if website}}
+			<a href="{{website}}" target="_blank" rel="noopener noreferrer">{{website}}</a>
+			{{/if}}
 		</div>
 	</div>
 </div>
 {{/foreach}}
-

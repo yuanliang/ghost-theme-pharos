@@ -16,9 +16,9 @@
 	</div>
 
 	{{#primary_author}}
-	<a href="{{url}}" class="article-item-author"
-	{{#if featur_image}} style="background-image: url({{img_url feature_image}});" title="{{name}}" itemprop="author">
-	{{else}} style="width: 100%; height: auto; text-align: center;">{{name}}
+	<a href="{{url}}" class="article-item-author {{#if profile_image}}has-avatar{{/if}}"
+	{{#if profile_image}} style="background-image: url({{img_url profile_image size="s"}});" title="{{name}}" aria-label="{{name}}" itemprop="author"><span class="sr-only">{{name}}</span>
+	{{else}} style="width: 100%; height: auto; text-align: center;" itemprop="author">{{name}}
 	{{/if}}
 	</a>
 	{{/primary_author}}
